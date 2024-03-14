@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basawa Technologies Assignment</title>
+    <link rel="stylesheet" href="{% static 'template.css' %}" />
+  </head>
+  <body>
+    {% include 'navbar.html'%}
+
+    <div class="heading">
+      <h2>Select Label Template to proceed</h2>
+      <h3>Label Size :- 3 inch by 1 inch</h3>
+    </div>
+
+    <section class="sec-1">
+      <div class="card3by1">
+        <a href="/labeler/showform/1/1/3by1-first/">
+          <img
+            class="qrimg"
+            src="https://services.basawa.com/static/labeler/images/qrcode.png"
+            alt="img"
+          />
+        </a>
+        <a href="/labeler/showform/1/1/3by1-first/">
+          <div class="qrinputs">
+            <span>Field 1 : Value 1</span>
+            <span>Field 2 : Value 2</span>
+            <span>Field 3 : value 3</span>
+          </div>
+        </a>
+      </div>
+      <div class="card3by1 row-rvc">
+        <a href="/labeler/showform/1/1/3by1-second/">
+          <img
+            class="qrimg"
+            src="https://services.basawa.com/static/labeler/images/qrcode.png"
+            alt="img"
+          />
+        </a>
+        <a href="/labeler/showform/1/1/3by1-second/">
+          <div class="qrinputs">
+            <span>Field 1 : Value 1</span>
+            <span>Field 2 : Value 2</span>
+            <span>Field 3 : Value 3</span>
+          </div>
+        </a>
+      </div>
+      <div class="card3by1">
+        <a href="/labeler/showform/1/1/3by1-third/">
+          <img
+            class="barimg"
+            src="https://services.basawa.com/static/labeler/images/code128.png"
+            alt="img"
+          />
+        </a>
+        <a href="/labeler/showform/1/1/3by1-third/">
+          <div class="barinputs">
+            <span>Field 1 : Value 1</span>
+            <span>Field 2 : Value 2</span>
+            <span>Field 3 : Value 3</span>
+          </div>
+        </a>
+      </div>
+      <div class="card3by1 row-rvc">
+        <a href="/labeler/showform/1/1/3by1-fourth/">
+          <img
+            class="barimg"
+            src="https://services.basawa.com/static/labeler/images/code128.png"
+            alt="img"
+          />
+        </a>
+        <a href="/labeler/showform/1/1/3by1-fourth/">
+          <div class="barinputs">
+            <span>Field 1 : Value 1</span>
+            <span>Field 2 : Value 2</span>
+            <span>Field 3 : Value 3</span>
+          </div>
+        </a>
+      </div>
+      <div class="card3by1">
+        <a href="/labeler/showform/1/1/3by1-fifth/">
+          <div class="onlyinputs">
+            <span>Field 1 : Value 1</span>
+            <span>Field 2 : Value 2</span>
+            <span>Field 3 : Value 3</span>
+            <span>Field 4 : Value 4</span>
+          </div>
+        </a>
+      </div>
+      <div class="card3by1 row-rvc">
+        <a href="/labeler/showform/1/1/3by1-sixth/">
+          <div class="onlyinputs">
+            <span>Field 1 : Value 1</span>
+            <span>Field 2 : Value 2</span>
+            <span>Field 3 : Value 3</span>
+          </div>
+        </a>
+      </div>
+    </section>
+  </body>
+</html>

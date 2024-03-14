@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basawa Technologies Assignment</title>
+    <link rel="stylesheet" href="{% static 'template.css' %}" />
+  </head>
+  <body>
+    {% include 'navbar.html'%}
+    <section class="sec-main">
+      <section class="first-sec">  
+        <form action="/labeler/showpdf/1/1/third/" method="POST" id="form">
+          {% csrf_token %}
+          <input
+            type="hidden"
+            name="csrfmiddlewaretoken"
+            value="YcahL08q7sqr9wYlWAJzFUePaA1t5UnzvJ36PDZbm1yJ0FBv1YElgzMbvJzNS98E"
+          />
+          <input
+            type="text"
+            placeholder="Enter QR-Code"
+            name="barcode1"
+            id="i7"
+            onchange="generateQRCode()"
+          />
+          <input
+            type="text"
+            placeholder="Enter Field 1"
+            name="field1"
+            id="i1"
+            onclick="setActiveField('i1')"
+            oninput="updateFieldValue('s2', this.value)"
+          />
+          <input
+            type="text"
+            placeholder="Enter Value 1"
+            name="value1"
+            id="i2"
+            oninput="updateFieldValue('s2', this.value)"
+          />
+          <input
+            type="text"
+            placeholder="Enter Field 2"
+            name="field2"
+            id="i3"
+            onclick="setActiveField('i3')"
+            oninput="updateFieldValue('s4', this.value)"
+          />
+          <input
+            type="text"
+            placeholder="Enter Value 2"
+            name="value2"
+            id="i4"
+            oninput="updateFieldValue('s4', this.value)"
+          />
+          <input
+            type="text"
+            placeholder="Enter Field 3"
+            name="field3"
+            id="i5"
+            onclick="setActiveField('i5')"
+            oninput="updateFieldValue('s6', this.value)"
+          />
+          <input
+            type="text"
+            placeholder="Enter Value 3"
+            name="value3"
+            id="i6"
+            oninput="updateFieldValue('s6', this.value)"
+          />
+          <input type="text" value="3by1-first" name="template" hidden="" />
+          <button class="btn btn-10">Submit</button>
+        </form>
+      </section>
+      <section class="first-sec">
+        <div class="card3by1" style="display: flex; justify-content:center;">
+          <table>
+            <tbody>
+              <tr>
+                <td style="width: 96px; height: 96px">
+                  <canvas
+                    style="width: 90px; height: 90px; position: fixed;"
+                    id="qrcanvas"
+                    height="100"
+                    width="100"
+                  >
+                </canvas>
+                  <img id="barcodecanvas" style="width: 90px; height: 90px; position: relative;" src="https://services.basawa.com/static/labeler/images/code128.png" />
+                </td>
+                <td style="text-align: left; font-size: 15px">
+                  <b id="s1">Field 1:</b> <span id="s2" onclick="setActiveField('i1')">Value1</span><br />
+                  <b id="s3">Field 2:</b> <span id="s4" onclick="setActiveField('i3')">Value2</span><br />
+                  <b id="s5">Field 3:</b> <span id="s6" onclick="setActiveField('i5')">Value3</span><br />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+    <script>
+      function updateFieldValue(fieldNumber, value) {
+        const spanId = "s" + fieldNumber;
+        document.getElementById(spanId).innerText = value;
+      }
+    
+      function setActiveField(fieldId) {
+        // Set the active field based on the clicked input field
+        document.querySelectorAll('input[type="text"]').forEach((input) => {
+          input.classList.remove('active-field');
+        });
+    
+        document.getElementById(fieldId).classList.add('active-field');
+      }
+    
+      function generateBarcode() {
+        const barcodeValue = document.getElementById("i7").value;
+        const barcodeCanvas = document.getElementById("barcodecanvas");
+        JsBarcode(barcodeCanvas, barcodeValue, {
+          format: "CODE128", // You can choose the barcode format here
+          displayValue: false,
+        });
+      }
+    
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add event listeners to all input fields
+        document.querySelectorAll('input[type="text"]').forEach((input) => {
+          const fieldNumber = input.id.slice(1);
+    
+          input.addEventListener("input", function () {
+            // Update corresponding span dynamically
+            updateFieldValue(fieldNumber, input.value);
+          });
+    
+          input.addEventListener("click", function () {
+            // Set the active field when the input is clicked
+            setActiveField(input.id);
+          });
+        });
+    
+        // Add event listener for barcode generation
+        document.getElementById("i7").addEventListener("input", generateBarcode);
+      });
+    </script>
+    
+  </body>
+</html>
